@@ -1,0 +1,38 @@
+{
+  "name": "blue-carbon-blockchain",
+  "version": "1.0.0",
+  "description": "Smart contracts for Blue Carbon Registry",
+  "main": "index.js",
+  "scripts": {
+    "compile": "hardhat compile",
+    "test": "hardhat test",
+    "deploy:local": "hardhat run scripts/deploy.js --network localhost",
+    "deploy:testnet": "hardhat run scripts/deploy.js --network sepolia",
+    "node": "hardhat node",
+    "console": "hardhat console",
+    "verify": "hardhat verify"
+  },
+  "keywords": [
+    "blockchain",
+    "solidity",
+    "carbon-credits",
+    "nft",
+    "erc721"
+  ],
+  "author": "SIH Team",
+  "license": "MIT",
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@openzeppelin/contracts": "^5.0.0",
+    "hardhat": "^2.19.0",
+    "@nomiclabs/hardhat-ethers": "^2.2.3",
+    "@typechain/ethers-v5": "^11.1.2",
+    "@typechain/hardhat": "^9.1.0",
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1"
+  },
+  "dependencies": {
+    "ethers": "^5.7.2",
+    "dotenv": "^16.3.1"
+  }
+}
