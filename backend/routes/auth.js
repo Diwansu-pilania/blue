@@ -1,4 +1,5 @@
 const express = require('express');
+const { body, validationResult } = require('express-validator');
 const jwt = require('jsonwebtoken');
 const NGO = require('../models/NGO');
 const Admin = require('../models/Admin');

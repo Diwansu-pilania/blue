@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Typography, Paper, Button, Box } from '@mui/material';
+import { Container, Typography, Paper, Box } from '@mui/material';
 
 const AdminNGOs: React.FC = () => {
   return (

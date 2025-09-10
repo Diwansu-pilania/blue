@@ -7,7 +7,7 @@ import {
   Box,
 } from '@mui/material';
 import { Link, useNavigate } from 'react-router-dom';
-import EcoIcon from '@mui/icons-material/Eco';
+import NatureIcon from '@mui/icons-material/Nature';
 
 const Navbar: React.FC = () => {
   const navigate = useNavigate();
@@ -15,7 +15,7 @@ const Navbar: React.FC = () => {
   return (
     <AppBar position="sticky">
       <Toolbar>
-        <EcoIcon sx={{ mr: 2 }} />
+            <NatureIcon sx={{ mr: 1 }} />
         <Typography 
           variant="h6" 
           component="div" 

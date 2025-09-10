@@ -3,15 +3,14 @@ import {
   Container,
   Typography,
   Box,
-  Grid,
+  Button,
   Card,
   CardContent,
-  Button,
   Paper,
 } from '@mui/material';
 import { Link } from 'react-router-dom';
 import {
-  Eco as EcoIcon,
+  Nature as EcoIcon,
   Security as SecurityIcon,
   AccountBalance as AccountBalanceIcon,
   CloudUpload as CloudUploadIcon,
@@ -78,25 +77,23 @@ const HomePage: React.FC = () => {
       </Box>
 
       {/* Features Section */}
-      <Grid container spacing={4} sx={{ mb: 6 }}>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', md: 'repeat(2, 1fr)' }, gap: 4, mb: 6 }}>
         {features.map((feature, index) => (
-          <Grid item xs={12} md={6} key={index}>
-            <Card sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
-              <CardContent sx={{ textAlign: 'center', p: 3 }}>
-                <Box sx={{ mb: 2 }}>
-                  {feature.icon}
-                </Box>
-                <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
-                  {feature.title}
-                </Typography>
-                <Typography variant="body2" color="text.secondary">
-                  {feature.description}
-                </Typography>
-              </CardContent>
-            </Card>
-          </Grid>
+          <Card key={index} sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+            <CardContent sx={{ textAlign: 'center', p: 3 }}>
+              <Box sx={{ mb: 2 }}>
+                {feature.icon}
+              </Box>
+              <Typography variant="h6" gutterBottom sx={{ fontWeight: 600 }}>
+                {feature.title}
+              </Typography>
+              <Typography variant="body2" color="text.secondary">
+                {feature.description}
+              </Typography>
+            </CardContent>
+          </Card>
         ))}
-      </Grid>
+      </Box>
 
       {/* Problem Statement Section */}
       <Paper sx={{ p: 4, mb: 4, bgcolor: 'primary.main', color: 'white' }}>
@@ -113,48 +110,40 @@ const HomePage: React.FC = () => {
       </Paper>
 
       {/* Statistics Section */}
-      <Grid container spacing={3} sx={{ textAlign: 'center' }}>
-        <Grid item xs={12} sm={3}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
-              0
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Registered NGOs
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
-              0
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Uploads Processed
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
-              0
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Carbon Credits Issued
-            </Typography>
-          </Paper>
-        </Grid>
-        <Grid item xs={12} sm={3}>
-          <Paper sx={{ p: 3 }}>
-            <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
-              0
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Hectares Restored
-            </Typography>
-          </Paper>
-        </Grid>
-      </Grid>
+      <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(4, 1fr)' }, gap: 3, textAlign: 'center' }}>
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
+            0
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Registered NGOs
+          </Typography>
+        </Paper>
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
+            0
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Uploads Processed
+          </Typography>
+        </Paper>
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
+            0
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Carbon Credits Issued
+          </Typography>
+        </Paper>
+        <Paper sx={{ p: 3 }}>
+          <Typography variant="h4" color="primary.main" sx={{ fontWeight: 'bold' }}>
+            0
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            Hectares Restored
+          </Typography>
+        </Paper>
+      </Box>
     </Container>
   );
 };

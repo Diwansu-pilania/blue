@@ -1,4 +1,4 @@
-const tf = require('@tensorflow/tfjs-node');
+// const tf = require('@tensorflow/tfjs-node'); // Temporarily disabled
 const sharp = require('sharp');
 
 class AIDetectionService {
@@ -24,15 +24,9 @@ class AIDetectionService {
 
   async initializeModel() {
     try {
-      if (this.modelPath && this.modelPath !== 'null') {
-        console.log('🤖 Loading AI plant detection model...');
-        this.model = await tf.loadLayersModel(`file://${this.modelPath}`);
-        this.modelLoaded = true;
-        console.log('✅ AI model loaded successfully');
-      } else {
-        console.log('⚠️ No AI model path provided. Using mock detection.');
-        this.modelLoaded = false;
-      }
+      // TensorFlow temporarily disabled - using mock detection
+      console.log('⚠️ AI model temporarily disabled. Using mock detection for testing.');
+      this.modelLoaded = false;
     } catch (error) {
       console.error('❌ Error loading AI model:', error);
       this.modelLoaded = false;
@@ -41,19 +35,13 @@ class AIDetectionService {
 
   async preprocessImage(imageBuffer) {
     try {
-      // Resize image to model input size (typically 224x224 for most CNN models)
-      const resizedImage = await sharp(imageBuffer)
-        .resize(224, 224)
-        .removeAlpha()
-        .raw()
-        .toBuffer();
-
-      // Convert to tensor and normalize
-      const tensor = tf.tensor3d(new Uint8Array(resizedImage), [224, 224, 3])
-        .div(255.0) // Normalize to 0-1
-        .expandDims(0); // Add batch dimension
-
-      return tensor;
+      // Simple image processing for mock detection
+      const metadata = await sharp(imageBuffer).metadata();
+      return {
+        width: metadata.width,
+        height: metadata.height,
+        size: imageBuffer.length
+      };
     } catch (error) {
       throw new Error(`Image preprocessing failed: ${error.message}`);
     }
@@ -61,53 +49,19 @@ class AIDetectionService {
 
   async detectPlantType(imageBuffer) {
     try {
-      if (!this.modelLoaded || !this.model) {
-        // Use mock detection if model is not available
-        return this.mockDetection(imageBuffer);
-      }
-
-      // Preprocess image
-      const inputTensor = await this.preprocessImage(imageBuffer);
-
-      // Run inference
-      const predictions = await this.model.predict(inputTensor);
-      const probabilities = await predictions.data();
-      
-      // Find the class with highest probability
-      let maxProb = 0;
-      let predictedClass = 0;
-      
-      for (let i = 0; i < probabilities.length; i++) {
-        if (probabilities[i] > maxProb) {
-          maxProb = probabilities[i];
-          predictedClass = i;
-        }
-      }
-
-      // Get plant type info
-      const plantInfo = this.plantTypes[predictedClass] || this.plantTypes[5];
-      
-      // Check if confidence meets threshold
-      const confidence = maxProb;
-      const meetsThreshold = confidence >= plantInfo.threshold;
-
-      // Clean up tensors
-      inputTensor.dispose();
-      predictions.dispose();
-
-      return {
-        plantSpecies: plantInfo.name,
-        plantType: meetsThreshold ? plantInfo.type : 'Other',
-        confidence: confidence,
-        modelVersion: this.modelVersion,
-        thresholdMet: meetsThreshold,
-        allProbabilities: Array.from(probabilities)
-      };
-
+      // Always use mock detection for now
+      return this.mockDetection(imageBuffer);
     } catch (error) {
       console.error('AI detection error:', error);
-      // Fallback to mock detection
-      return this.mockDetection(imageBuffer);
+      // Fallback to basic mock detection
+      return {
+        plantSpecies: 'Unknown species',
+        plantType: 'Other',
+        confidence: 0.5,
+        modelVersion: 'mock-1.0.0',
+        thresholdMet: false,
+        allProbabilities: [0.5, 0.1, 0.1, 0.1, 0.1, 0.1]
+      };
     }
   }
 

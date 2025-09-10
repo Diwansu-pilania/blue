@@ -9,7 +9,7 @@
     "backend": "cd backend && npm run dev",
     "frontend": "cd frontend && npm start",
     "blockchain": "cd blockchain && npx hardhat node",
-    "build": "cd frontend && npm run build",
+    "build": "cd frontend && npm install && npm run build",
     "test": "cd backend && npm test && cd ../blockchain && npx hardhat test",
     "deploy": "cd blockchain && npx hardhat run scripts/deploy.js"
   },

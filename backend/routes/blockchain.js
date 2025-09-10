@@ -1,5 +1,5 @@
 const express = require('express');
-const Web3 = require('web3');
+const { Web3 } = require('web3');
 const Upload = require('../models/Upload');
 const NGO = require('../models/NGO');
 const { authMiddleware, adminOnly, requirePermission } = require('../middleware/auth');
